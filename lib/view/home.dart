@@ -1,4 +1,6 @@
 import 'package:delivery/view/category_widget.dart';
+import 'package:delivery/view/info_webview.dart';
+import 'package:delivery/view/maps.dart';
 import 'package:delivery/view/popular_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,12 +11,12 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar(context),
       backgroundColor: Colors.white,
       body: ListView(
         children: [
           searchField(),
-          locationField(),
+          locationField(context),
           SizedBox(
             height: 30,
           ),
@@ -62,7 +64,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Container locationField() {
+  Container locationField(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 10, left: 20, right: 20),
       decoration: BoxDecoration(boxShadow: [
@@ -73,11 +75,22 @@ class HomePage extends StatelessWidget {
         )
       ]),
       child: TextField(
+        readOnly:
+            true, // Tambahkan baris ini agar tidak dapat fokus ketika disentuh
+        onTap: () {
+          // Tambahkan baris ini untuk pindah ke MapPage ketika icon di sentuh
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const MapPage(
+                        title: 'Locations',
+                      )));
+        },
         decoration: InputDecoration(
             filled: true,
             fillColor: Color.fromARGB(255, 253, 203, 170),
             contentPadding: EdgeInsets.all(15),
-            hintText: '5694 BRTA Road',
+            hintText: 'Portland',
             hintStyle: TextStyle(
                 color: Color.fromARGB(255, 7, 0, 0),
                 fontSize: 14,
@@ -121,7 +134,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  AppBar appBar() {
+  AppBar appBar(BuildContext context) {
     return AppBar(
       title: Text(
         'Search Food',
@@ -142,12 +155,20 @@ class HomePage extends StatelessWidget {
             borderRadius: BorderRadius.circular(50)),
       ),
       actions: [
-        Container(
-          margin: EdgeInsets.all(10),
-          child: SvgPicture.asset('assets/arrow.svg'),
-          decoration: BoxDecoration(
-              color: Color(0xffF7F8F8),
-              borderRadius: BorderRadius.circular(10)),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => InfoWebView()),
+            );
+          },
+          child: Container(
+            margin: EdgeInsets.all(10),
+            child: SvgPicture.asset('assets/info.svg'),
+            decoration: BoxDecoration(
+                color: Color(0xffF7F8F8),
+                borderRadius: BorderRadius.circular(10)),
+          ),
         ),
       ],
     );

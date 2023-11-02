@@ -30,6 +30,6 @@ class LoginController extends GetxController {
         File(selectedImage.value).existsSync()) {
       return FileImage(File(selectedImage.value));
     }
-    return AssetImage('assets/mhnf.jpg');
+    return AssetImage('assets/person.jpg');
   }
 }
