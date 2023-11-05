@@ -1,3 +1,4 @@
+import 'package:delivery/view/all_food.dart';
 import 'package:delivery/view/category_widget.dart';
 import 'package:delivery/view/info_webview.dart';
 import 'package:delivery/view/maps.dart';
@@ -24,18 +25,40 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    'Popular',
-                    style: TextStyle(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Popular',
+                      style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,
-                        fontWeight: FontWeight.w600),
-                  )),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AllFood(),
+                        ));
+                      },
+                      child: Text(
+                        'See All',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
-              PopularWidget()
+              PopularWidget(),
             ],
           ),
           SizedBox(
@@ -45,20 +68,22 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Text(
-                    'Find By Category',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600),
-                  )),
+                padding: const EdgeInsets.only(left: 20),
+                child: Text(
+                  'Find By Category',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
               SizedBox(
                 height: 10,
               ),
-              CategoryWidget()
+              CategoryWidget(),
             ],
-          )
+          ),
         ],
       ),
     );
@@ -147,7 +172,7 @@ class HomePage extends StatelessWidget {
       leading: Container(
         margin: EdgeInsets.all(10),
         child: Image.asset(
-          "assets/mhnf.jpg",
+          "assets/weather.svg",
           fit: BoxFit.cover,
         ),
         decoration: BoxDecoration(
