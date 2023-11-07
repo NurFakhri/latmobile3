@@ -162,7 +162,7 @@ class HomePage extends StatelessWidget {
   AppBar appBar(BuildContext context) {
     return AppBar(
       title: Text(
-        'Search Food',
+        'Delivery Food',
         style: TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
       ),
@@ -171,12 +171,12 @@ class HomePage extends StatelessWidget {
       centerTitle: true,
       leading: Container(
         margin: EdgeInsets.all(10),
-        child: Image.asset(
+        child: SvgPicture.asset(
           "assets/weather.svg",
           fit: BoxFit.cover,
         ),
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 109, 116, 116),
+            color: Color.fromARGB(255, 255, 255, 255),
             borderRadius: BorderRadius.circular(50)),
       ),
       actions: [
